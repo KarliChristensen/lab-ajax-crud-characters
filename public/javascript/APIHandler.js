@@ -1,39 +1,27 @@
 class APIHandler {
   constructor(baseUrl) {
-    this.BASE_URL = baseUrl;
+    this.api = axios.create({
+      baseURL: baseUrl,
+    });
   }
 
-  async getFullList(characters) {
-    const getFullList = await axios.get(`${this.BASE_URL}/${characters}`);
-    return getFullList.data;
+  getFullList(characters) {
+    return this.api.get("/characters")
   }
 
-  async getOneRegister(characters, id) {
-    const getOneRegister = await axios.get(
-      `${this.BASE_URL}/${characters}/${id}`
-    );
-    return getOneRegister.data;
+  getOneRegister(characters, id) {
+    return this.api.get(`/characters/${id}`);
   }
 
-  async createOneRegister(characters, newCharacter) {
-    const createOneRegister = await axios.post(
-      `${this.BASE_URL}/${characters}`,
-      newCharacter
-    );
-    return createOneRegister.data;
+  createOneRegister(characters, newCharacter) {
+    return this.api.post("/characters/", newCharacter);
   }
 
-  async updateOneRegister(characters, id) {
-    const updateOneRegister = await axios.put(
-      `${this.BASE_URL}/${characters}/${id}`
-    );
-    return updateOneRegister.data;
+  updateOneRegister(characters, id) {
+    return this.api.put(`/characters/${id}`, characters);
   }
 
-  async deleteOneRegister(characters, id) {
-    const deleteOneRegister = await axios.delete(
-      `${this.BASE_URL}/${characters}/${id}`
-    );
-    return deleteOneRegister.data;
+  deleteOneRegister(characters, id) {
+    return this.api.delete(`/characters/${id}`);
   }
 }
