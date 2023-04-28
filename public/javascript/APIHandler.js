@@ -5,15 +5,15 @@ class APIHandler {
     });
   }
 
-  getFullList(characters) {
+  getFullList() {
     return this.api.get("/characters")
   }
 
-  getOneRegister(characters, id) {
+  getOneRegister(id) {
     return this.api.get(`/characters/${id}`);
   }
 
-  createOneRegister(characters, newCharacter) {
+  createOneRegister(newCharacter) {
     return this.api.post("/characters/", newCharacter);
   }
 
@@ -21,7 +21,7 @@ class APIHandler {
     return this.api.put(`/characters/${id}`, characters);
   }
 
-  deleteOneRegister(characters, id) {
+  deleteOneRegister(id) {
     return this.api.delete(`/characters/${id}`);
   }
 }
